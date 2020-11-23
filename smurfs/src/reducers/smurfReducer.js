@@ -1,10 +1,14 @@
 import { FETCHING_SMURFS_START, FETCHING_SMURFS_SUCCESS } from "../actions";
 
+//setup initial state HERE
+
 const initialState = {
   smurfs: [],
   isLoading: false,
   error: "",
 };
+
+// Start Fetch
 
 export const smurfReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +18,9 @@ export const smurfReducer = (state = initialState, action) => {
         isLoading: true,
         error: "",
       };
+
+    //Successfully get Data
+
     case FETCHING_SMURFS_SUCCESS:
       return {
         ...state,
@@ -23,4 +30,4 @@ export const smurfReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}; 
+};

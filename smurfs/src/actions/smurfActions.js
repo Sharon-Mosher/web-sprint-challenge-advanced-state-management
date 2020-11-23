@@ -3,6 +3,8 @@ import axios from "axios";
 export const FETCHING_SMURFS_START = "FETCHING_SMURFS_START";
 export const FETCHING_SMURFS_SUCCESS = "FETCHING_SMURFS_SUCCESS";
 
+// API Call goes here
+
 export const fetchData = () => (dispatch) => {
   dispatch({ type: FETCHING_SMURFS_START });
 
@@ -13,4 +15,4 @@ export const fetchData = () => (dispatch) => {
       dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: res.data });
     })
     .catch((err) => console.log("SV: smurfActions: fetchData: error", err));
-}; 
+};
