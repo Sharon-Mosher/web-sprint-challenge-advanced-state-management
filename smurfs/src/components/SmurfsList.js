@@ -1,35 +1,42 @@
-import React, { useEffect } from 'react';
-import { fetchSmurfs } from '../actions/index';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
+import { fetchData } from "../store/index";
 
-const SmurfsList = (props) => {
-    useEffect(() => {
-        props.fetchSmurfs();
-    }, [props]);
-
-    return (
-        <div classname = 'container'>
-            <h1> Welcome to the Smurf Village</h1>
-            {props.isloading ? <p>Loading Village Members...</p> : null}
-            {props.error ? <p>{props.error}</p>: null}
-            {props.smurfs.map((smurfs) => (
-                <div>
-                    <h4>{smurfs.name}</h4>
-                    <p>{smurfs.age}</p>
-                    <p>{smurfs.height}</p>
-                    </div>
-            ))};
+const Smurfs = (props) => {
+  useEffect(() => {
+    props.fetchData();
+  }, []);
+  return (
+    <div>
+      <h1> Welcome to the Smurfs Village!</h1>
+      {props.isLoading ? <h4> Where are the smurfs? </h4> : null}
+      {props.error ? (
+        <p style={{ color: "red" }}> No smurfs today {props.error}</p>
+      ) : null}
+      {props.smurfs.length > 0 ? (
+        <div>
+          {props.smurfs.map((smurf) => {
+            return (
+              <div>
+                <h2>{smurf.name}</h2>
+                <h3>Age: {smurf.age} </h3>
+                <h3>Height: {smurf.height}</h3>
+              </div>
+            );
+          })}
         </div>
-    );
+      ) : null}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        isloading: state.isloading,
-        jokes: state.smurfsData,
-        error: state.error
-    };
+  return {
+    smurfs: state.smurfs,
+    isLoading: state.isLoading,
+    error: state.error,
+  };
 };
 
-export default connect(mapStateToProps, { fetchSmurfs})(SmurfsList);
+export default connect(mapStateToProps, { fetchData })(Smurfs);

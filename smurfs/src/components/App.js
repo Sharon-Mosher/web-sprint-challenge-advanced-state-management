@@ -1,11 +1,15 @@
 import React from "react";
 import "./App.css";
-import SmurfsList from "./SmurfsList";
+import Smurfs from "./SmurfsList";
+import SmurfForm from "./SmurfForm";
 
-export default function App() {
+const App = () => {
   return (
-    <div className = 'APP'>
-    <SmurfsList/>
+    <div className="App">
+      <Smurfs />
+      <SmurfForm />
     </div>
-  )
-}
+  );
+};
+
+export default App; 
